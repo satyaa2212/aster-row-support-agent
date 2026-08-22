@@ -44,7 +44,7 @@ def run_evaluation():
                 else:
                     final_response = f"ERROR: {e}"
                 
-        # --- Run Assertions ---
+        
         passed = True
         expectations = case.get("expect", {})
         final_response_lower = final_response.lower()
