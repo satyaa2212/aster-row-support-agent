@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 # ==========================================
 load_dotenv()
 
-# Safely fetch API key from either Streamlit Cloud secrets or local .env file
 api_key = None
 try:
     if "GEMINI_API_KEY" in st.secrets:
@@ -41,7 +40,7 @@ def get_order_status(order_id: str) -> str:
     """
     file_path = os.path.join("data", "orders.json")
     
-    # Normalizing input: remove spaces and make UPPERCASE (e.g. ' ord-1005 ' -> 'ORD-1005')
+
     clean_order_id = order_id.strip().upper()
     
     try:
@@ -50,18 +49,18 @@ def get_order_status(order_id: str) -> str:
             
         for order in data.get("orders", []):
             if order.get("order_id") == clean_order_id:
-                # SANITIZATION: Remove sensitive and internal data BEFORE sending to AI
+               
                 safe_order = order.copy()
                 
-                # Delete sensitive customer PII
+                
                 if "customer" in safe_order:
                     safe_order["customer"].pop("email", None)
                     safe_order["customer"].pop("shipping_address", None)
                 
-                # Delete completely hidden internal fields
+                
                 safe_order.pop("internal", None)
                 
-                # We return only the safe version to the AI
+                
                 return f"Order Details Found: {json.dumps(safe_order)}"
                 
         return f"Sorry, no order found with ID: {clean_order_id}"
@@ -91,10 +90,6 @@ def search_policies(query: str) -> str:
     combined_text = "\n\n---\n\n".join(combined_chunks)
     return f"Policy Information Found:\n{combined_text}"
 
-
-# ==========================================
-# 3. BUILD THE AGENT & CHAT LOOP
-# ==========================================
 
 # ==========================================
 # 3. BUILD THE AGENT & CHAT LOOP
@@ -130,7 +125,7 @@ def get_agent_chat_session():
         system_instruction=system_instruction
     )
     
-    # Return the session object so other files can send messages to it
+    
     return model.start_chat(enable_automatic_function_calling=True)
 
 def start_cli_chat():
