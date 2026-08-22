@@ -8,7 +8,22 @@ from dotenv import load_dotenv
 # 1. SETUP API & DATABASE
 # ==========================================
 load_dotenv()
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+# Safely fetch API key from either Streamlit Cloud secrets or local .env file
+api_key = None
+try:
+    if "GEMINI_API_KEY" in st.secrets:
+        api_key = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    pass
+
+if not api_key:
+    api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    raise ValueError("GEMINI_API_KEY is missing! Please set it in .env or Streamlit secrets.")
+
+genai.configure(api_key=api_key)
 
 # Connect to the local ChromaDB we built earlier
 chroma_client = chromadb.PersistentClient(path="chroma_db")
