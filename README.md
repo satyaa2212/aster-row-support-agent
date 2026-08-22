@@ -12,6 +12,8 @@ Built for **Aster & Row** to handle policy questions, warranty claims, shipping 
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![Eval Score](https://img.shields.io/badge/Eval%20Score-13%2F15-brightgreen)
 
+**[🔗 Live Demo](https://aster-row-support-agent-t4e3gs9jpvnfezbacxkcp2.streamlit.app/)**
+
 ![Agent Demo Web UI](demo.gif)
 *Demo: the Streamlit web interface handling order tracking and policy queries securely.*
 
