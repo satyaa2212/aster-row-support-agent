@@ -23,6 +23,7 @@ Built for **Aster & Row** to handle policy questions, warranty claims, shipping 
 
 ## 📑 Table of Contents
 
+- [In Action](#-in-action)
 - [Architecture & Tech Stack](#-architecture--tech-stack)
 - [High-Level System Flow](#-high-level-system-flow)
 - [Setup and Run Instructions](#-setup-and-run-instructions)
@@ -30,6 +31,41 @@ Built for **Aster & Row** to handle policy questions, warranty claims, shipping 
 - [Bug Diary](#-bug-diary)
 - [Known Limitations & Future Scope](#-known-limitations--future-scope)
 - [AI Coding Tools Used](#-ai-coding-tools-used)
+
+<br>
+
+## 🎬 In Action
+
+### Video Walkthrough
+
+<video src="assets/demo-walkthrough.mp4" controls width="100%"></video>
+
+*A full walkthrough: greeting the agent, tracking an order, and asking policy questions — all grounded in source documents.*
+
+### Screenshots
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**1. Order Tracking**
+
+Looks up a live order by ID and returns status, ETA, and delay reason — pulled straight from `orders.json`.
+
+<img src="assets/screenshot-order-tracking.png" alt="Order tracking conversation" width="100%">
+
+</td>
+<td width="50%" valign="top">
+
+**2. Policy Q&A with Source Citations**
+
+Answers grounded strictly in the knowledge base, with every claim traced back to its source document.
+
+<img src="assets/screenshot-policy-qa.png" alt="Policy Q&A conversation with citations" width="100%">
+
+</td>
+</tr>
+</table>
 
 <br>
 
