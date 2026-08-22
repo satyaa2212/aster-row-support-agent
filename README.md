@@ -38,7 +38,7 @@ Built for **Aster & Row** to handle policy questions, warranty claims, shipping 
 
 ### Video Walkthrough
 
-<video src="assets/demo-walkthrough.mp4" controls width="100%"></video>
+<video src="https://raw.githubusercontent.com/satyaa2212/aster-row-support-agent/main/assets/demo-walkthrough.mp4" controls width="100%"></video>
 
 *A full walkthrough: greeting the agent, tracking an order, and asking policy questions — all grounded in source documents.*
 
