@@ -3,8 +3,6 @@ import re
 import yaml
 import chromadb
 
-# Notice we removed the Google GenAI imports and API key setup!
-
 KB_FOLDER = "knowledge-base"
 DB_DIR = "chroma_db"
 
@@ -13,14 +11,10 @@ def main():
     print("Setting up ChromaDB...")
     chroma_client = chromadb.PersistentClient(path=DB_DIR)
     
-    # Delete the old table if it exists so we start fresh
     try:
         chroma_client.delete_collection(name="aster_row_policies")
     except Exception:
         pass
-        
-    # When we create a collection this way, ChromaDB automatically uses 
-    # its default local AI model (all-MiniLM-L6-v2) to create embeddings.
     collection = chroma_client.create_collection(name="aster_row_policies")
 
     # 2. Read and Chunk the Markdown Files
@@ -79,7 +73,6 @@ def main():
         ids.append(f"chunk_{i}")
 
     if documents:
-        # Save everything to the database in one single, fast command
         collection.add(
             documents=documents,
             metadatas=metadatas,
