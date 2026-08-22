@@ -85,25 +85,15 @@ To keep the system lightweight, deterministic, and easily auditable for evaluati
 
 ## 🔄 High-Level System Flow
 
-```
-┌─────────────────┐     ┌──────────────────────┐     ┌────────────────────┐
-│   User Input      │ ──▶ │  Agentic Router        │ ──▶ │   Tool Execution     │
-│  (CLI / Web UI)    │     │  (Gemini + native      │     │                      │
-│                    │     │   function calling)    │     │                      │
-└─────────────────┘     └──────────────────────┘     └──────────┬─────────┘
-                                                                    │
-                              ┌─────────────────────────────────────┼─────────────────────┐
-                              ▼                                                          ▼
-                   🔍 search_policies()                                     📦 get_order_status()
-                   → queries ChromaDB                                       → looks up orders.json
-                              │                                                          │
-                              └─────────────────────────────────────┬─────────────────────┘
-                                                                    ▼
-                                                   🧹 Sanitization & Grounding
-                                          (strip PII / internal fields, attach source metadata)
-                                                                    │
-                                                                    ▼
-                                                     💬 Grounded response to user
+```mermaid
+flowchart TD
+    A["👤 User Input<br/>(CLI / Web UI)"] --> B["🧠 Agentic Router<br/>(Gemini + native function calling)"]
+    B --> C{"Request Type"}
+    C -->|"Policy question"| D["🔍 search_policies()<br/>queries ChromaDB"]
+    C -->|"Order tracking"| E["📦 get_order_status()<br/>looks up orders.json"]
+    D --> F["🧹 Sanitization & Grounding<br/>(strip PII / internal fields,<br/>attach source metadata)"]
+    E --> F
+    F --> G["💬 Grounded response to user"]
 ```
 
 1. **User Input** — the user submits a message via the CLI or Web UI.
